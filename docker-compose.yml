@@ -1,0 +1,24 @@
+services:
+  ET-DB:
+    image: et-db
+    container_name: et-uas-db
+    ports:
+      - "27018:27017"
+    networks:
+      - backend
+
+  et-uas:
+    image: et-saurav
+    container_name: et-uas
+    ports:
+      - "8081:8081"
+    depends_on:
+      - ET-DB
+    networks:
+      - backend
+
+networks:
+  backend:
+    name: backend
+    driver: bridge
+

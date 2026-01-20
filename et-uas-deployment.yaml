@@ -1,0 +1,30 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  annotations:
+    kompose.cmd: kompose --file docker-compose.yml convert
+    kompose.version: 1.37.0 (HEAD)
+  labels:
+    io.kompose.service: et-uas
+  name: et-uas
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      io.kompose.service: et-uas
+  template:
+    metadata:
+      annotations:
+        kompose.cmd: kompose --file docker-compose.yml convert
+        kompose.version: 1.37.0 (HEAD)
+      labels:
+        io.kompose.service: et-uas
+    spec:
+      containers:
+        - image: et-saurav
+          name: et-uas
+          imagePullPolicy: IfNotPresent
+          ports:
+            - containerPort: 8081
+              protocol: TCP
+      restartPolicy: Always
