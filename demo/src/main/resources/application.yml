@@ -1,9 +1,0 @@
-spring:
-  application:
-    name: expense_tracker
-  mongodb:
-    uri: mongodb://saurav:saurav@localhost:27017/expensetracker?authSource=useradmin
-    database: expensetracker
-
-server:
-  port: 8085

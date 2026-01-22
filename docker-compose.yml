@@ -1,6 +1,6 @@
 services:
   ET-DB:
-    image: et-db
+    image: thesauravpoddar/expauthdb
     container_name: et-uas-db
     ports:
       - "27018:27017"
@@ -8,7 +8,7 @@ services:
       - backend
 
   et-uas:
-    image: et-saurav
+    image: thesauravpoddar/expenseauth
     container_name: et-uas
     ports:
       - "8081:8081"
@@ -16,6 +16,24 @@ services:
       - ET-DB
     networks:
       - backend
+
+  ET-SER-DB:
+    image: thesauravpoddar/expserdb
+    container_name: et-ser-db
+    ports:
+        - "27019:27017"
+    networks:
+        - backend
+  ET-SER:
+    image: thesauravpoddar/expensemanager
+    container_name: et-ser
+    ports:
+        - "8082:8082"
+    depends_on:
+        - ET-SER-DB
+    networks:
+        - backend
+
 
 networks:
   backend:

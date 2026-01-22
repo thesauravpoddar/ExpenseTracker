@@ -1,0 +1,9 @@
+spring:
+  application:
+    name: expense_tracker
+
+  mongodb:
+    uri: mongodb://mongo:27017/expensetracker
+
+server:
+  port: 8085
