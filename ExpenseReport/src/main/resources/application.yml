@@ -1,0 +1,6 @@
+spring:
+  application:
+    name: expense-report-ser
+
+server:
+  port: 8083
