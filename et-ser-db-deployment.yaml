@@ -1,0 +1,29 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  annotations:
+    kompose.cmd: kompose --file docker-compose.yml convert
+    kompose.version: 1.37.0 (HEAD)
+  labels:
+    io.kompose.service: et-ser-db
+  name: et-ser-db
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      io.kompose.service: et-ser-db
+  template:
+    metadata:
+      annotations:
+        kompose.cmd: kompose --file docker-compose.yml convert
+        kompose.version: 1.37.0 (HEAD)
+      labels:
+        io.kompose.service: et-ser-db
+    spec:
+      containers:
+        - image: thesauravpoddar/expserdb
+          name: et-ser-db
+          ports:
+            - containerPort: 27017
+              protocol: TCP
+      restartPolicy: Always

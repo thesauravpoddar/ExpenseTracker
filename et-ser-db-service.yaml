@@ -1,0 +1,16 @@
+apiVersion: v1
+kind: Service
+metadata:
+  annotations:
+    kompose.cmd: kompose --file docker-compose.yml convert
+    kompose.version: 1.37.0 (HEAD)
+  labels:
+    io.kompose.service: et-ser-db
+  name: et-ser-db
+spec:
+  ports:
+    - name: "27019"
+      port: 27019
+      targetPort: 27017
+  selector:
+    io.kompose.service: et-ser-db

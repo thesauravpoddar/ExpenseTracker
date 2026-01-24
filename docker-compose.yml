@@ -33,6 +33,13 @@ services:
         - ET-SER-DB
     networks:
         - backend
+  ET-R:
+    image: thesauravpoddar/expensereport
+    container_name: et-r
+    ports:
+        - "8083:8083"
+    networks:
+        - backend
 
 
 networks:

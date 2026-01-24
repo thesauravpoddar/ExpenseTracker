@@ -1,0 +1,29 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  annotations:
+    kompose.cmd: kompose --file docker-compose.yml convert
+    kompose.version: 1.37.0 (HEAD)
+  labels:
+    io.kompose.service: et-ser
+  name: et-ser
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      io.kompose.service: et-ser
+  template:
+    metadata:
+      annotations:
+        kompose.cmd: kompose --file docker-compose.yml convert
+        kompose.version: 1.37.0 (HEAD)
+      labels:
+        io.kompose.service: et-ser
+    spec:
+      containers:
+        - image: thesauravpoddar/expensemanager
+          name: et-ser
+          ports:
+            - containerPort: 8082
+              protocol: TCP
+      restartPolicy: Always

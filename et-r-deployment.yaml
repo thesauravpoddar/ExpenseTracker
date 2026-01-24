@@ -1,0 +1,29 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  annotations:
+    kompose.cmd: kompose --file docker-compose.yml convert
+    kompose.version: 1.37.0 (HEAD)
+  labels:
+    io.kompose.service: et-r
+  name: et-r
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      io.kompose.service: et-r
+  template:
+    metadata:
+      annotations:
+        kompose.cmd: kompose --file docker-compose.yml convert
+        kompose.version: 1.37.0 (HEAD)
+      labels:
+        io.kompose.service: et-r
+    spec:
+      containers:
+        - image: thesauravpoddar/expensereport
+          name: et-r
+          ports:
+            - containerPort: 8083
+              protocol: TCP
+      restartPolicy: Always
